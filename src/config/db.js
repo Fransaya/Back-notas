@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const DB_CONNECTION = process.env.DB_CONNECTION;
-const client = new MongoClient(DB_CONNECTION,{useNewUrlParser:true});
+const client = new MongoClient(DB_CONNECTION,{useNewUrlParser:true, connectTimeoutMS: 30000 });
 
 const connectDB = async()=>{
     try{
