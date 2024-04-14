@@ -1,4 +1,4 @@
-import {getTareas} from '../Services/serviceTarea.js';
+import {getTareas,postTarea} from '../Services/serviceTarea.js';
 
 export const getAllTareas = async(req,res)=>{
     try{
@@ -13,7 +13,7 @@ export const getAllTareas = async(req,res)=>{
 export const postTareas = async(req,res)=>{
     try{
         const {titulo, descripcion, estado, archivada, fechaCreacion, fechaLimite} =  req.body;
-        const notaCreada = await serviceNotas.postTarea(titulo, descripcion,estado,archivada,fechaCreacion,fechaLimite);
+        const notaCreada = await postTarea(titulo, descripcion,estado,archivada,fechaCreacion,fechaLimite);
         res.status(200).json(notaCreada);
     }catch(err){
         console.error("Error al crear nota", err);

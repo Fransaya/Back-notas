@@ -9,6 +9,6 @@ const tareaSchema = new mongoose.Schema({
     fechaLimite:{type: Date}
 },{collection:'tareas'});
 
-const Tarea = mongoose.model('Tarea',tareaSchema);
+const Tarea = mongoose.model('tareas',tareaSchema);
 
 export default Tarea;
