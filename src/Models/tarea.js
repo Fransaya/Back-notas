@@ -7,8 +7,8 @@ const tareaSchema = new mongoose.Schema({
     archivada: {type:Boolean, default:false},
     fechaCreacion:{type:Date, default:Date.now},
     fechaLimite:{type: Date}
-},{collection:'tareas'});
+});
 
-const Tarea = mongoose.model('tareas',tareaSchema);
+const Tarea = mongoose.model('Colecction1',tareaSchema);
 
 export default Tarea;

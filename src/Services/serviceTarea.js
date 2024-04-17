@@ -1,6 +1,8 @@
 
 //? MODELO DE Tarea
+//import { connect } from 'mongoose';
 import Tarea from '../Models/tarea.js';
+
 
 export const getTareas = async() =>{
     try{
@@ -24,17 +26,28 @@ export const getTareasById = async(id_nota) =>{
 
 export const postTarea = async(titulo, descripcion, estado, archivada,fechaCreacion,fechaLimite)=>{
     try{
-        const nota = await Tarea.create({
+        const tarea = Tarea({
             titulo,
             descripcion,
-            estado: estado ? true: false,
+            estado: estado ? true : false,
             archivada: archivada ? false : true,
-            fechaCreacion: new Date,
+            fechaCreacion: new Date(),
             fechaLimite,
-        })
-        return nota;
+        });
+        await tarea.save()
+        return tarea;
     }catch(err){
         console.error("Error al crear Tarea", err);
         throw err;
     }
 };
+
+export const modificarTarea = async(id,itulo, descripcion, estado, archivada, fechaCreacion, fechaLimite)=>{
+    try{    
+        const TareaModificada = await Tarea.findById(id);
+        console.log("tarea", TareaModificada)
+    }catch(err){
+        console.error("Error al modificar tarea", err);
+        throw err;
+    }
+}
