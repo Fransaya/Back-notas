@@ -1,4 +1,4 @@
-import {getTareas,postTarea, modificarTarea} from '../Services/serviceTarea.js';
+import {getTareas,postTarea, modificarTarea,eliminarTarea} from '../Services/serviceTarea.js';
 
 export const getAllTareas = async(req,res)=>{
     try{
@@ -29,6 +29,18 @@ export const patchTarea =   async(req,res)=>{
         res.status(200).json(tareaModificada);
     }catch(err){
         console.error("Error al modificar Tareas")
+        res.status(500).json({message:"Error al modificar tarea", error:err.message});
+    }
+};
+
+
+export const deleteTarea = async(req,res)=>{
+    try{
+        const id = req.params;
+        const tareaEliminada = await eliminarTarea(id);
+        res.status(200).json(tareaEliminada);
+    }catch(err){
+        console.error("Error al eliminar tarea", err.message);
         res.status(500).json({message:"Error al modificar tarea", error:err.message});
     }
 }

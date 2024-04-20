@@ -1,7 +1,7 @@
 import express from 'express';
 
 //? CONTROLADOR DE NOTAS
-import {getAllTareas, postTareas,patchTarea}  from '../Controller/controllerTareas.js';
+import {getAllTareas, postTareas,patchTarea,deleteTarea}  from '../Controller/controllerTareas.js';
 
 
 const tareasRoute = express.Router();
@@ -16,6 +16,6 @@ tareasRoute.post('/crearTarea',postTareas);
 tareasRoute.patch('/modificarTarea/:id',patchTarea);
 
 //? delete tarea
-tareasRoute.delete('/eliminarTarea',)
+tareasRoute.delete('/eliminarTarea/:id',deleteTarea)
 
 export default tareasRoute;

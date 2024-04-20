@@ -2,6 +2,7 @@
 //? MODELO DE Tarea
 //import { connect } from 'mongoose';
 import Tarea from '../Models/tarea.js';
+import { ObjectId } from 'mongodb';
 
 
 export const getTareas = async() =>{
@@ -42,12 +43,23 @@ export const postTarea = async(titulo, descripcion, estado, archivada,fechaCreac
     }
 };
 
-export const modificarTarea = async(id,itulo, descripcion, estado, archivada, fechaCreacion, fechaLimite)=>{
+export const modificarTarea = async(id,titulo, descripcion, estado, archivada, fechaCreacion, fechaLimite)=>{
     try{    
-        const TareaModificada = await Tarea.findById(id);
+        const TareaModificada = await Tarea.updateOne({_id:new ObjectId(id)},{$set:{titulo,descripcion,estado,archivada,fechaCreacion,fechaLimite}});
         console.log("tarea", TareaModificada)
+        return TareaModificada
     }catch(err){
         console.error("Error al modificar tarea", err);
         throw err;
+    }
+};
+
+export const eliminarTarea= async(id)=>{
+    try{
+        const tareaEliminada = await Tarea.deleteOne({_id: new ObjectId(id)});
+        return tareaEliminada;
+    }catch(err){
+        console.error("Error al eliminar tarea", err);
+        throw err
     }
 }
